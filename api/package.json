@@ -1,7 +1,7 @@
 {
   "name": "va-api",
   "version": "1.0.0",
-  "description": "express api for vastgoed analytics",
+  "description": "NERD Stack",
   "main": "index.js",
   "author": "skonky",
   "scripts": {

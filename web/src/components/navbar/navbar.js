@@ -8,7 +8,7 @@ export const NavBar = () => {
         <div className="col">
           <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <a className="navbar-brand" href="#">
-              🚀 VA 0.1
+              🚀 NERD 0.1
             </a>
             <button
               className="navbar-toggler border-0"

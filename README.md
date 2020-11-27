@@ -1,4 +1,4 @@
-# API and WEB for Vastgoed Analytics
+# NERD stack
 
 ## How to run
 
@@ -36,14 +36,3 @@ In the web folder is also an **nginx** folder which functions as the bridge betw
 The **web** app currently is a *create-react-app* static production build
 
 The **api** is a very simple node.js express setup that currently only returns a json object
-
-## TODO
-
-1. Add login and register flow with Auth0 50%
-2. Add a datasource like MYSQL database or whatever you want :)
-4. Setup API caching mechanism based on URL???
-5. HTTPS/SSL certificates for nginx webserver
-5. Create first chart
-
-
-
