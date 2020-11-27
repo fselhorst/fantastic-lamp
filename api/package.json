@@ -1,0 +1,14 @@
+{
+  "name": "va-api",
+  "version": "1.0.0",
+  "description": "express api for vastgoed analytics",
+  "main": "index.js",
+  "author": "skonky",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

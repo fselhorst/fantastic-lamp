@@ -1,0 +1,29 @@
+version: '3.1'
+
+services:
+  web:
+    image: nginx-web
+    build:
+      context: ./web
+      args:
+        - REACT_APP_API_CONTEXT=/api
+        - REACT_APP_API_OAUTH_DOMAIN=fsxh.eu.auth0.com
+        - REACT_APP_API_OAUTH_CLIENT_ID=Y1xPvsicGb3I1Rut6wiCZW1DUmO6TaIJ
+    ports:
+      - "80:80"
+    networks:
+      - web
+      - api
+
+  api:
+    image: nginx-api
+    build:
+      context: ./api
+      args:
+        - API_CONTEXT=/api
+    networks:
+      - api
+
+networks:
+  web:
+  api:
