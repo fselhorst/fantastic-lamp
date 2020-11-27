@@ -7,7 +7,7 @@ export const NavBar = () => {
       <div className="row">
         <div className="col">
           <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <a className="navbar-brand" href="#">
+            <a className="navbar-brand" href="/">
               🚀 NERD 0.1
             </a>
             <button
