@@ -4,7 +4,6 @@ import { Route, Switch } from 'wouter'
 import Index from './pages/index/Index'
 import { NotFound } from './pages/not-found/NotFound'
 import { NavBar } from './components/navbar/navbar'
-import './App.css'
 
 function App() {
   return (
