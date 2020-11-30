@@ -1,36 +1,43 @@
 import { useEffect, useState } from 'react'
-import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react'
-
+import { withAuthenticationRequired } from '@auth0/auth0-react'
 import { Loading } from '../../components/loading/loading'
+import config from '../../config'
+
 import './Index.css'
+import { PostForm } from '../../components/post-form/post-form'
 
 const Index = () => {
   const [data, setData] = useState(null)
-  const [isFetching, setIsFetching] = useState(true)
-  const { user } = useAuth0()
+  const hasData = data && Object.keys(data).length > 0
 
   useEffect(() => {
     async function fetchAPI() {
-      const response = await fetch('http://localhost:8080/api')
+      const response = await fetch(`${config.API_URI}/posts`)
       const data = await response.json()
       setData(data)
-      setIsFetching(false)
     }
-
     fetchAPI()
   }, [])
 
   return (
-    <div className="container">
+    <div className="container mt-3">
       <div className="row">
-        <div className="col">
-          <div className="jumbotron mt-4">
-            <h1 className="display-4">NERD Stack</h1>
-            <p className="lead">Nginx Express React Docker</p>
-            <p>Hi {user.given_name} 👋</p>
-            <hr className="my-4" />
-            {!isFetching && <code>{JSON.stringify(data)}</code>}
-          </div>
+        <div className="col-xs-12 col-sm-12 col-lg-7">
+          <PostForm />
+        </div>
+      </div>
+      <div className="row">
+        <div className="col-xs-12 col-sm-12 col-lg-7">
+          <ul className="list-group">
+            {hasData &&
+              data.map((post) => {
+                return (
+                  <li className="list-group-item" key={post._id}>
+                    {post.title}
+                  </li>
+                )
+              })}
+          </ul>
         </div>
       </div>
     </div>

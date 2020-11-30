@@ -1,6 +1,10 @@
 FROM node:alpine
 
-ARG API_CONTEXT=/api
+ARG API_CONTEXT
+ARG MONGO_URI
+
+ENV API_CONTEXT=/api
+ENV MONGO_URI=mongodb://mongo:27017/appdb
 
 WORKDIR /app
 

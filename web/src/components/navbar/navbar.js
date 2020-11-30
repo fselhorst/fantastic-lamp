@@ -3,13 +3,14 @@ import { NavLink } from './nav-link'
 
 export const NavBar = () => {
   return (
-    <div className="container">
+    <div className="container mt-3">
       <div className="row">
         <div className="col">
-          <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <a className="navbar-brand" href="/">
-              🚀 NERD 0.1
-            </a>
+          <nav className="navbar rounded navbar-expand-lg navbar-light bg-light">
+            <NavLink href="/" className="navbar-brand">
+              💎 NERD 0.1
+            </NavLink>
+
             <button
               className="navbar-toggler border-0"
               type="button"
@@ -29,8 +30,15 @@ export const NavBar = () => {
                     Dashboard
                   </NavLink>
                 </li>
+                <li className="nav-item">
+                  <NavLink href="/profile" className="nav-link">
+                    Profile
+                  </NavLink>
+                </li>
               </ul>
-              <AuthButton />
+              <div className="d-inline my-2 my-lg-0">
+                <AuthButton />
+              </div>
             </div>
           </nav>
         </div>
