@@ -6,6 +6,7 @@ import { NavBar } from './components/navbar/navbar'
 
 const Index = lazy(() => import('./pages/index/Index'))
 const NotFound = lazy(() => import('./pages/not-found/NotFound'))
+const Profile = lazy(() => import('./pages/profile/Profile'))
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Suspense fallback={<Loading />}>
         <Switch>
           <Route path="/" component={Index} />
+          <Route path="/profile" component={Profile} />
           <Route component={NotFound} />
         </Switch>
       </Suspense>
