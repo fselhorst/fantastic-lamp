@@ -2,39 +2,39 @@ import { useContext } from 'react'
 import { withAuthenticationRequired } from '@auth0/auth0-react'
 
 import { Loading } from '../../components/loading/loading'
-import { PostContext } from '../../provider/post-provider'
-import { PostForm } from '../../components/post-form/post-form'
+import { MealForm } from '../../components/meal-form/meal-form'
+import { MealContext } from '../../provider/meal-provider'
 
-import './Index.css'
+import './meal.css'
 
-const Index = () => {
-  const { posts, isLoading, removePost } = useContext(PostContext)
+const Meal = () => {
+  const { meals, isLoading, removeMeal } = useContext(MealContext)
   return (
     <div className="container mt-3">
       <div className="row">
         <div className="m-auto col-xs-12 col-sm-12 col-md-6">
-          <PostForm />
+          <MealForm />
         </div>
       </div>
       <div className="row">
         <div className="m-auto col-xs-12 col-sm-12 col-md-6">
           <ul className="list-group">
             {!isLoading &&
-              posts.map(({ _id, author, title }) => {
+              meals.map(({ _id, price, name }) => {
                 return (
                   <li
-                    onClick={() => removePost(_id)}
+                    onClick={() => removeMeal(_id)}
                     className="list-group-item"
                     key={_id}
                   >
-                    {title}
-                    <p className="small">{author}</p>
+                    {name}
+                    <p className="small">{price}</p>
                   </li>
                 )
               })}
-            {!isLoading && posts.length === 0 && (
+            {/* {!isLoading && posts.length === 0 && (
               <p className="text-center">Wow... very empty here 🙉</p>
-            )}
+            )} */}
           </ul>
         </div>
       </div>
@@ -42,6 +42,6 @@ const Index = () => {
   )
 }
 
-export default withAuthenticationRequired(Index, {
+export default withAuthenticationRequired(Meal, {
   onRedirecting: () => <Loading />,
 })

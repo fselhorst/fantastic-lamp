@@ -5,6 +5,7 @@ import { Loading } from './components/loading/loading'
 import { NavBar } from './components/navbar/navbar'
 
 const Index = lazy(() => import('./pages/index/Index'))
+const Meal = lazy(() => import('./pages/meal/Meal'))
 const NotFound = lazy(() => import('./pages/not-found/NotFound'))
 const Profile = lazy(() => import('./pages/profile/Profile'))
 
@@ -15,6 +16,7 @@ function App() {
       <Suspense fallback={<Loading />}>
         <Switch>
           <Route path="/" component={Index} />
+          <Route path="/meal" component={Meal} />
           <Route path="/profile" component={Profile} />
           <Route component={NotFound} />
         </Switch>

@@ -3,12 +3,12 @@ import { NavLink } from './nav-link'
 
 export const NavBar = () => {
   return (
-    <div className="container-fluid mt-3">
+    <div className="container mt-3">
       <div className="row">
         <div className="col">
-          <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+          <nav className="navbar navbar-expand-lg navbar-dark ">
             <NavLink href="/" className="navbar-brand">
-              👻
+              surge 🚀
             </NavLink>
 
             <button
@@ -27,7 +27,12 @@ export const NavBar = () => {
               <ul className="navbar-nav mr-auto">
                 <li className="nav-item">
                   <NavLink href="/" className="nav-link">
-                    Dashboard
+                    Post
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink href="/meal" className="nav-link">
+                    Meal
                   </NavLink>
                 </li>
                 <li className="nav-item">

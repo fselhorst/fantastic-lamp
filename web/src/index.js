@@ -7,6 +7,7 @@ import PostProvider from './provider/post-provider'
 import config from './config'
 
 import './index.css'
+import MealProvider from './provider/meal-provider'
 
 ReactDOM.render(
   <React.StrictMode>
@@ -17,7 +18,9 @@ ReactDOM.render(
         redirectUri={window.location.origin + '/'}
       >
         <PostProvider>
-          <App />
+          <MealProvider>
+            <App />
+          </MealProvider>
         </PostProvider>
       </Auth0Provider>
     </Router>

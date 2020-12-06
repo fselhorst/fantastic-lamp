@@ -5,6 +5,7 @@ import { PostContext } from '../../provider/post-provider'
 import './post-form.css'
 
 export const PostForm = () => {
+  const { user } = useAuth0()
   const { addPost } = useContext(PostContext)
   const [formData, setFormData] = useState(null)
   const formElementRef = useRef(null)
@@ -12,7 +13,7 @@ export const PostForm = () => {
   const onSubmit = async (event) => {
     event.preventDefault()
     if (formData !== null) {
-      addPost(formData)
+      addPost(formData, user.email)
       formElementRef.current.value = ''
       setFormData(null)
     }

@@ -4,11 +4,10 @@ if (process.env.NODE_ENV !== 'production') {
 const express = require('express');
 const mongoose = require('mongoose');
 const fetch = require('node-fetch');
-const { ObjectId } = require('mongodb');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-
-const PostModel = require('./models/post-model');
+const postController = require('./controllers/post')
+const mealController = require('./controllers/meal')
 const app = express();
 
 
@@ -32,31 +31,17 @@ app.get(API_CONTEXT, (_, res) => {
 });
 
 
-app.get(API_CONTEXT + '/posts', (req, res) => {
-    const author = req.headers['x-author'];
-    PostModel.find({author: author}).then(function(posts) {
-        return res.json(posts);
-    });
-});
+app.get(API_CONTEXT + '/posts', postController().getAll);
 
-app.post(API_CONTEXT + '/posts', (req, res) => {
-    const { title, author } = req.body;
-    PostModel.create({
-        title,
-        author,
-        _id: ObjectId(),
-    }).then(function(value) {
-        return res.json(value);
-    });
-});
+app.post(API_CONTEXT + '/posts', postController().createOne);
 
-app.delete(API_CONTEXT + '/posts', (req, res) => {
-    const { id } = req.query;
+app.delete(API_CONTEXT + '/posts', postController().deleteOne);
 
-    PostModel.deleteOne({_id: id}).then(function() {
-        return res.json({id});
-    });
-});
+app.get(API_CONTEXT + '/meals', mealController().getAll);
+
+app.post(API_CONTEXT + '/meals', mealController().createOne);
+
+app.delete(API_CONTEXT + '/meals', mealController().deleteOne);
 
 app.get(API_CONTEXT+'/btc', async (req, res) => {
     const response = await fetch('https://api.coindesk.com/v1/bpi/currentprice.json');
