@@ -4,9 +4,9 @@ import { Loading } from '../../components/loading/loading'
 const Profile = () => {
   const { user, logout } = useAuth0()
   return (
-    <div className="container mt-3">
+    <div className="container-fluid mt-3">
       <div className="row">
-        <div className="col-xs-12 col-6">
+        <div className="m-auto col-xs-12 col-md-6">
           <div className="card border-0">
             <div className="card-body">
               <h5 className="card-title">

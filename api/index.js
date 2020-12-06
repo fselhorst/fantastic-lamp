@@ -32,26 +32,29 @@ app.get(API_CONTEXT, (_, res) => {
 });
 
 
-app.get(API_CONTEXT + '/posts', (_, res) => {
-    PostModel.find().then(function(posts) {
+app.get(API_CONTEXT + '/posts', (req, res) => {
+    const author = req.headers['x-author'];
+    PostModel.find({author: author}).then(function(posts) {
         return res.json(posts);
     });
 });
 
 app.post(API_CONTEXT + '/posts', (req, res) => {
-    const { title } = req.body;
-    console.log(req.body);
+    const { title, author } = req.body;
     PostModel.create({
         title,
+        author,
         _id: ObjectId(),
     }).then(function(value) {
-        return res.send(200);
+        return res.json(value);
     });
 });
 
-app.delete(API_CONTEXT + '/posts', (_, res) => {
-    PostModel.remove({}).then(function() {
-        return res.send(200);
+app.delete(API_CONTEXT + '/posts', (req, res) => {
+    const { id } = req.query;
+
+    PostModel.deleteOne({_id: id}).then(function() {
+        return res.json({id});
     });
 });
 

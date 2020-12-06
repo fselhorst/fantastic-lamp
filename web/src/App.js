@@ -10,7 +10,7 @@ const Profile = lazy(() => import('./pages/profile/Profile'))
 
 function App() {
   return (
-    <>
+    <div className="app">
       <NavBar />
       <Suspense fallback={<Loading />}>
         <Switch>
@@ -19,7 +19,7 @@ function App() {
           <Route component={NotFound} />
         </Switch>
       </Suspense>
-    </>
+    </div>
   )
 }
 

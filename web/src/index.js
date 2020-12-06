@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import { Auth0Provider } from '@auth0/auth0-react'
 import { Router } from 'wouter'
 import App from './App'
+import PostProvider from './provider/post-provider'
 import config from './config'
 
 import './index.css'
@@ -15,7 +16,9 @@ ReactDOM.render(
         clientId={config.OAUTH_CLIENT_ID}
         redirectUri={window.location.origin + '/'}
       >
-        <App />
+        <PostProvider>
+          <App />
+        </PostProvider>
       </Auth0Provider>
     </Router>
   </React.StrictMode>,

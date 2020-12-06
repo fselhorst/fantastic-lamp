@@ -1,47 +1,53 @@
-import { useRef, useState } from 'react'
+import { useAuth0 } from '@auth0/auth0-react'
+import { useContext, useRef, useState } from 'react'
+import { PostContext } from '../../provider/post-provider'
+
+import './post-form.css'
 
 export const PostForm = () => {
+  const { addPost } = useContext(PostContext)
   const [formData, setFormData] = useState(null)
-  const titleInputRef = useRef(null)
+  const formElementRef = useRef(null)
 
   const onSubmit = async (event) => {
     event.preventDefault()
-    const response = await fetch('http://localhost:8080/api/posts', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    })
-    if (response.status === 200) {
+    if (formData !== null) {
+      addPost(formData)
+      formElementRef.current.value = ''
       setFormData(null)
-      titleInputRef.current.value = ''
     }
   }
 
   const handleChange = (e) => {
     e.preventDefault()
-    setFormData({
-      ...formData,
-      title: e.target.value,
-    })
+    if (formElementRef.current && formElementRef.current.value) {
+      setFormData({
+        title: formElementRef.current.value,
+      })
+    } else {
+      setFormData(null)
+    }
   }
 
   return (
     <form method="POST" onSubmit={onSubmit}>
       <div className="input-group mb-3">
         <input
-          ref={titleInputRef}
+          ref={formElementRef}
           onChange={handleChange}
           type="text"
           name="title"
-          className="form-control"
+          className="form-control custom-input"
           placeholder="Post title"
           aria-label="Post title"
         />
-        <div className="input-group-append">
-          <button className="btn btn-primary">Submit</button>
-        </div>
+
+        <button
+          disabled={formData !== null ? undefined : 'disabled'}
+          className="btn ml-3 btn-primary"
+        >
+          Submit
+        </button>
       </div>
     </form>
   )

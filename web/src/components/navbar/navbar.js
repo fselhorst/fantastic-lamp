@@ -3,12 +3,12 @@ import { NavLink } from './nav-link'
 
 export const NavBar = () => {
   return (
-    <div className="container mt-3">
+    <div className="container-fluid mt-3">
       <div className="row">
         <div className="col">
-          <nav className="navbar rounded navbar-expand-lg navbar-light bg-light">
+          <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <NavLink href="/" className="navbar-brand">
-              💎 NERD 0.1
+              👻
             </NavLink>
 
             <button

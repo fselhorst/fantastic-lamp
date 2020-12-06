@@ -5,7 +5,7 @@ export const AuthButton = () => {
 
   return isAuthenticated ? (
     <button
-      className="btn btn-warning nav-link"
+      className="btn btn-danger btn-sm nav-link"
       onClick={() =>
         logout({
           returnTo: window.origin,
