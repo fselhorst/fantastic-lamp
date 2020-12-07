@@ -27,8 +27,8 @@ const Meal = () => {
                     className="list-group-item"
                     key={_id}
                   >
-                    {name}
-                    <p className="small">{price}</p>
+                    <h4>{name}</h4>
+                    <p className="mb-0">€ {price}</p>
                   </li>
                 )
               })}

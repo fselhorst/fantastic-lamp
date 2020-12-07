@@ -1,59 +1,43 @@
-import { useContext, useRef, useState } from 'react'
+import { useContext } from 'react'
+import { useForm } from 'react-hook-form'
 import { MealContext } from '../../provider/meal-provider'
 
 import './meal-form.css'
 
 export const MealForm = () => {
   const { addMeal } = useContext(MealContext)
-
-  const [formData, setFormData] = useState(null)
-  const formRef = useRef(null)
-
-  const onSubmit = async (event) => {
-    event.preventDefault()
-    if (formData !== null) {
-      addMeal(formData)
-      setFormData(null)
-      formRef.current.reset()
-    }
-  }
-
-  const handleChange = (e) => {
-    e.preventDefault()
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    })
+  const { register, handleSubmit, errors, reset } = useForm()
+  const onSubmit = (data) => {
+    addMeal(data)
+    reset()
   }
 
   return (
-    <form ref={formRef} method="POST" onSubmit={onSubmit}>
-      <div className="input-group mb-3">
+    <form onSubmit={handleSubmit(onSubmit)}>
+      {/* register your input into the hook by invoking the "register" function */}
+      <div className="input-group mb-3 d-flex flex-column">
         <input
-          onChange={handleChange}
-          type="text"
+          className="form-control w-100 custom-input"
+          placeholder="Naam van gerecht"
           name="name"
-          className="form-control custom-input"
-          placeholder="Name"
-          aria-label="Name"
+          ref={register({ required: true })}
         />
+        {errors.name && <span>Naam is verplicht</span>}
       </div>
-      <div className="input-group mb-3">
+      <div className="input-group mb-3 d-flex flex-column">
         <input
-          onChange={handleChange}
-          type="number"
+          className="form-control w-100 custom-input"
+          placeholder="Prijs van gerecht"
           name="price"
-          className="form-control custom-input"
-          placeholder="Price"
-          aria-label="Price"
+          ref={register({ required: true, valueAsNumber: true })}
         />
+        {errors.price && <span>Prijs is verplicht</span>}
       </div>
-      <button
-        disabled={formData !== null ? undefined : 'disabled'}
-        className="btn ml-3 btn-primary"
-      >
-        Submit
-      </button>
+      <input
+        className="btn btn-small btn-primary mb-3"
+        value="Add meal"
+        type="submit"
+      />
     </form>
   )
 }
