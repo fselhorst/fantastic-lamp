@@ -1,8 +1,11 @@
 version: '3.1'
 
 services:
+  certbot:
+    image: certbot/certbot
   web:
     image: nginx-web
+
     build:
       context: ./web
       args:
@@ -12,6 +15,8 @@ services:
         - REACT_APP_API_HOST=http://localhost
     ports:
       - "80:80"
+      - "443:443"
+    
     networks:
       - frontend
       - backend
