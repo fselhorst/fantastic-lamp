@@ -1,4 +1,4 @@
-version: '3.1'
+version: "3.1"
 
 services:
   web:
@@ -9,9 +9,14 @@ services:
         - REACT_APP_API_CONTEXT=/api
         - REACT_APP_API_OAUTH_DOMAIN=fsxh.eu.auth0.com
         - REACT_APP_API_OAUTH_CLIENT_ID=Y1xPvsicGb3I1Rut6wiCZW1DUmO6TaIJ
-        - REACT_APP_API_HOST=http://localhost
+        - REACT_APP_API_HOST=https://localhost
     ports:
       - "80:80"
+      - "443:443"
+
+    volumes:
+      - ./web/nginx/cert/localhost.crt:/etc/ssl/localhost.crt
+      - ./web/nginx/cert/localhost.key:/etc/ssl/localhost.key
     networks:
       - frontend
       - backend
