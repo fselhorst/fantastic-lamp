@@ -3,7 +3,7 @@ FROM node:alpine as build
 ARG REACT_APP_API_CONTEXT=/api
 ARG REACT_APP_OAUTH_DOMAIN=fsxh.eu.auth0.com
 ARG REACT_APP_OAUTH_CLIENT_ID=Y1xPvsicGb3I1Rut6wiCZW1DUmO6TaIJ
-ARG REACT_APP_API_HOST=http://localhost
+ARG REACT_APP_API_HOST=https://localhost
 
 WORKDIR /app
 

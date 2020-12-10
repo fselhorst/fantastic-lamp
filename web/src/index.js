@@ -15,7 +15,7 @@ ReactDOM.render(
       <Auth0Provider
         domain={config.OAUTH_DOMAIN}
         clientId={config.OAUTH_CLIENT_ID}
-        redirectUri={window.location.origin + '/'}
+        redirectUri={window.location.origin}
       >
         <PostProvider>
           <MealProvider>

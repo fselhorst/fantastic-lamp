@@ -13,28 +13,38 @@ export const MealForm = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form className="needs-validation" onSubmit={handleSubmit(onSubmit)}>
       {/* register your input into the hook by invoking the "register" function */}
-      <div className="input-group mb-3 d-flex flex-column">
+      <div className="input-group mb-2">
         <input
-          className="form-control w-100 custom-input"
-          placeholder="Naam van gerecht"
+          autoComplete="off"
+          className={`form-control ${errors.name ? 'border-danger' : null}`}
+          placeholder="Meal name"
           name="name"
           ref={register({ required: true })}
         />
-        {errors.name && <span>Naam is verplicht</span>}
       </div>
-      <div className="input-group mb-3 d-flex flex-column">
+      <div className="input-group mb-2">
         <input
-          className="form-control w-100 custom-input"
-          placeholder="Prijs van gerecht"
+          className={`form-control ${errors.name ? 'border-danger' : null}`}
+          placeholder="Meal price"
           name="price"
+          autoComplete="off"
+          type="number"
           ref={register({ required: true, valueAsNumber: true })}
         />
-        {errors.price && <span>Prijs is verplicht</span>}
+      </div>
+      <div className="input-group mb-2">
+        <textarea
+          className={`form-control ${errors.name ? 'border-danger' : null}`}
+          placeholder="Meal description"
+          name="description"
+          autoComplete="off"
+          ref={register({ required: true })}
+        ></textarea>
       </div>
       <input
-        className="btn btn-small btn-primary mb-3"
+        className="btn btn-small btn-primary mb-3 mt-3"
         value="Add meal"
         type="submit"
       />

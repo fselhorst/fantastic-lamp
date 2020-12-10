@@ -10,6 +10,7 @@ const MealProvider = ({ children }) => {
   const { user } = useAuth0()
 
   const addMeal = async (meal) => {
+    console.log({ meal })
     const response = await fetch(`${config.API_URI}/meals`, {
       method: 'POST',
       headers: {
